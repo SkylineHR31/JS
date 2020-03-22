@@ -1,12 +1,14 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     overflow: hidden;
+    margin: 0;
+
 }
 
 .container-wrapper {
     background-image: url("../images/main-bcg.jpg");
-    width: 99vw;
-    height: 98vh;
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
 }
 

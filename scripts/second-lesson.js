@@ -1,7 +1,7 @@
 const CURRENT_YEAR = 2020;
 
 function mainSecondLesson() {
-    // console.log(userData());
+    console.log(userData());
     console.log(calcAverage(getVariable()));
 }
 
