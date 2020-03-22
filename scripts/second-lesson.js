@@ -1,17 +1,63 @@
-let result = "";
-const NAME = prompt("Name");
-const YEAR = prompt("Year of birth");
 const CURRENT_YEAR = 2020;
-let age = CURRENT_YEAR - YEAR;
-alert("Your name is: " + NAME + "\nYour year of birth is: " + YEAR + "\nYour Age is: " + age);
 
-let a = Number(prompt("Enter first variable"));
-let b = Number(prompt("Enter second variable"));
-let c = Number(prompt("Enter third variable"));
-let sum = 0;
-sum += a;
-sum += b;
-sum += c;
- let average = sum / 3;
-console.log(typeof a, typeof b, typeof c, typeof sum);
-console.log("sum is: ", sum, "\nArithmetic average: " + average);
+function mainSecondLesson() {
+    // console.log(userData());
+    console.log(calcAverage(getVariable()));
+}
+
+// user data functions start
+
+function getUserName(name) {
+    return prompt("Enter u`r name");
+}
+
+function getUserYear(year) {
+    return +prompt("Enter u`r date of birth");
+}
+
+function calcAge(year) {
+    return CURRENT_YEAR - year;
+}
+
+function userDataConcatenation(userName, userYear, userAge) {
+    return `Your name is: ${userName}, 
+    \nYour year of birth is: ${userYear}, 
+    \nYour Age is: ${userAge}`;
+}
+
+function userData() {
+    let name = getUserName();
+    let year = getUserYear();
+   return userDataConcatenation(name, year, calcAge(year));
+}
+
+// user data functions end
+
+// calculate average start
+
+function getVariable() {
+    let arr = [];
+
+    for(let i = 0; i < 3; i++) {
+        arr[i] = +prompt(`Enter ${i+1} variable`);
+    }
+
+    return arr;
+}
+
+function calcAverage(numbersArray) {
+    let average = 0;
+    let sum = 0;
+
+    for (let i = 0; i < numbersArray.length; i++) {
+        sum += numbersArray[i];
+    }
+
+    average = sum / numbersArray.length;
+
+    return `Sum is: ${sum} \nArithmetic average: ${average}`;
+}
+
+// calculate average end
+
+mainSecondLesson();
