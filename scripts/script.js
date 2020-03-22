@@ -1,7 +1,7 @@
-import {consolOutput} from './first-lessom.js';
+// import {consolOutput} from './first-lessom.js';
 
-function run () {
-    consolOutput();
-}
+// function run () {
+//     consolOutput();
+// }
 
-run();
+// run();
