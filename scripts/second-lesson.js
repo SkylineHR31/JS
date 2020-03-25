@@ -1,4 +1,4 @@
-const CURRENT_YEAR = 2020;
+const CURRENT_YEAR = new Date().getFullYear();
 
 function mainSecondLesson() {
     console.log(userData());
@@ -28,7 +28,7 @@ function userDataConcatenation(userName, userYear, userAge) {
 function userData() {
     let name = getUserName();
     let year = getUserYear();
-   return userDataConcatenation(name, year, calcAge(year));
+    return userDataConcatenation(name, year, calcAge(year));
 }
 
 // user data functions end
@@ -39,7 +39,7 @@ function getVariable() {
     let arr = [];
 
     for(let i = 0; i < 3; i++) {
-        arr[i] = +prompt(`Enter ${i+1} variable`);
+        arr.push(+prompt(`Enter ${i+1} variable`));
     }
 
     return arr;
