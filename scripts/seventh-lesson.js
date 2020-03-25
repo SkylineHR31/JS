@@ -16,6 +16,11 @@ const origin = {
     fieldFour: "someValueFour"
 };
 
+const someObject = {
+    fieldOne: "someValueOne",
+    fieldTwo: "someValuetwo"
+};
+
 const target = {};
 
 function isObject(obj) {
@@ -32,7 +37,7 @@ function isObject(obj) {
     }
 
     return target;
-  }
+}
 
 copy(target,origin);
 
@@ -52,3 +57,29 @@ console.log(target);
 
 // Copy objects parth end
 
+// Equal objects parth start
+
+function isObjects(obj1, obj2) {
+    if ((obj1 !== null && typeof obj1 === "object") 
+         && (obj2 !== null && (typeof obj2 === "object"))) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function isEqual(obj1, obj2) {
+    if (isObjects(obj1, obj2)) {
+        for (const key in obj1) {
+            if (!obj1[key] === obj2[key]) return false;
+            if (isObject(obj1[key])) {
+                if (!isEqual(obj1[key], obj2[key])) return false;
+                
+            }
+        }
+    } else return false;
+    return true;
+}
+
+console.log(isEqual(origin,origin));
+console.log(isEqual(origin,someObject));
