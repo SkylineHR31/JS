@@ -59,27 +59,29 @@ console.log(target);
 
 // Equal objects parth start
 
+const someVariable = "String00";
+const someVariableVrong = "NotString";
+
 function isObjects(obj1, obj2) {
-    if ((obj1 !== null && typeof obj1 === "object") 
-         && (obj2 !== null && (typeof obj2 === "object"))) {
-        return true;
-    } else {
-        return false;
-    }
+    return isObject(obj1) && isObject(obj2);
 }
 
-function isEqual(obj1, obj2) {
-    if (isObjects(obj1, obj2)) {
-        for (const key in obj1) {
-            if (!obj1[key] === obj2[key]) return false;
-            if (isObject(obj1[key])) {
-                if (!isEqual(obj1[key], obj2[key])) return false;
+function isEqual(a, b) {
+    if (isObjects(a, b)) {
+        for (const key in a) {
+            if (a[key] !== b[key]) return false;
+            if (isObject(a[key])) {
+                if (!isEqual(a[key], b[key])) return false;
                 
             }
         }
-    } else return false;
+    } else if (a !== b) return false;
     return true;
 }
 
 console.log(isEqual(origin,origin));
 console.log(isEqual(origin,someObject));
+console.log(isEqual(someVariable,someVariable));
+console.log(isEqual(someVariable,someVariableVrong));
+
+// Equal objects parth end
