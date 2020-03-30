@@ -51,10 +51,35 @@ console.log(resultArray);
 function filter(array, callback) {
     let bufferArray = [];
     for (let i = 0; i < array.length; i++) {
-        if (callback) bufferArray.push(array[i]);
+        if (callback(array[i], i, array)) bufferArray.push(array[i]);
     }
 
     return bufferArray;
 }
 
-// filter(arr, arrayFilter => func() {});
+console.log(filter(arr, item => item > 3));
+
+
+function some(array, callback) {
+    for (let i = 0; i < array.length; i++) {
+        if(callback(array[i], array)) return true;
+    }
+    return false;
+}
+
+console.log(some(arr, item => item === 3));
+console.log(some(arr, item => item === 6));
+
+
+const arrTwo = [5, 5, 5, 5, 5,];
+function every(array, callback) {
+    let bufferVar = false;
+    for (let i = 0; i < array.length; i++) {
+        if(callback(array[i], array)) bufferVar = true;
+        if (bufferVar === false) return false;
+    }
+    return bufferVar;
+}
+
+console.log(every(arrTwo, item => item === 5));
+console.log(every(arrTwo, item => item === 6));
