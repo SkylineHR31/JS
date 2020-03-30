@@ -1,12 +1,12 @@
 function isString(str) {
-    if (typeof str === "string") return true;
-    return false;
+    return typeof str === "string";
 }
 
 
 function isSymbolPresentInString(str, symbol) {
+    if (!isString(str)) return false;
     for (let i = 0; i < str.length; i++) {
-        if (isString(str) && str[i] === symbol) return true; 
+        if (str[i] === symbol) return true; 
     }
 
     return false;
@@ -17,8 +17,9 @@ console.log(isSymbolPresentInString("abc","e"));
 
 
 function getSymbolIndex(str, symbol) {
+    if (!isString(str)) return console.error("NOT_STRING");
     for (let i = 0; i < str.length; i++) {
-        if (isString(str) && str[i] === symbol) return i; 
+        if (str[i] === symbol) return i; 
     }
 
     return -1;
@@ -32,7 +33,9 @@ console.log(getSymbolIndex("hello lol","v"));
 const arr = [1, 2, 3, 4, 5,];
 
 function forEach(array, callback) {
-    for (let i = 0; i < array.length; i++) callback(array[i], i);
+    for (let i = 0; i < array.length; i++) {
+        callback(array[i], i);
+    }
 }
 
 forEach(arr, arrayOutput => console.log(arrayOutput));
@@ -40,7 +43,9 @@ forEach(arr, arrayOutput => console.log(arrayOutput));
 
 function map(array, callback) {
     let bufferArray = [];
-    for (let i = 0; i < array.length; i++) bufferArray.push(callback(array[i], i));
+    for (let i = 0; i < array.length; i++) {
+        bufferArray.push(callback(array[i], i));
+    }
     return bufferArray;
 }
 
@@ -51,7 +56,9 @@ console.log(resultArray);
 function filter(array, callback) {
     let bufferArray = [];
     for (let i = 0; i < array.length; i++) {
-        if (callback(array[i], i, array)) bufferArray.push(array[i]);
+        if (callback(array[i], i, array)) {
+            bufferArray.push(array[i]);
+        }
     }
 
     return bufferArray;
@@ -72,13 +79,12 @@ console.log(some(arr, item => item === 6));
 
 
 const arrTwo = [5, 5, 5, 5, 5,];
+
 function every(array, callback) {
-    let bufferVar = false;
     for (let i = 0; i < array.length; i++) {
-        if(callback(array[i], array)) bufferVar = true;
-        if (bufferVar === false) return false;
+        if(!callback(array[i], array)) return false;
     }
-    return bufferVar;
+    return true;
 }
 
 console.log(every(arrTwo, item => item === 5));
