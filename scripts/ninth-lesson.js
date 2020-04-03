@@ -9,40 +9,61 @@ const origin = {
     fieldTest:
     {
         subFieldOneTest: "subSomeValueOne",
-        subFieldTwoTest: "subSomeValueTwo"
+        subFieldTwoTest: "subSomeValueTwo",
     },
     fieldFour: "someValueFour",
-    fieldFive : [1,2,3,4,5],
+    fieldFive: [1, 2, 3, 4, 5,],
+    fieldSix: [{
+        subFieldOneTest: "subSomeValueOne",
+        subFieldTwoTest: "subSomeValueTwo",
+    }, {
+        subFieldOneTest: "subSomeValueOne",
+        subFieldTwoTest: "subSomeValueTwo",
+    }, {
+        subFieldOneTest: "subSomeValueOne",
+        subFieldTwoTest: "subSomeValueTwo",
+    },],
 };
 
 const target = {};
 
 function isObject(obj) {
-    return obj !== null && (typeof obj === "object");
+    return obj !== null && typeof obj === "object" && obj!== Array.isArray(obj);
 }
+
 
 function copy(target, origin) {
     for (const key in origin) {
-        if (isObject(origin[key])) {
+        if (Array.isArray(origin[key])) {
+            target[key] = copy([], origin[key]);
+        } else if(isObject(origin[key])) {
             target[key] = copy({}, origin[key]);
         } else {
             target[key] = origin[key];
         }
-        if (Array.isArray(origin[key])) {
-            target[key] = copy([], origin[key]);
-        }
     }
-
     return target;
 }
 
-copy(target,origin);
+copy(target, origin);
 
 console.log(target);
 
+if (origin.fieldSix.subFieldOneTest === target.fieldSix.subFieldOneTest) {
+    console.log("origin.fieldSix.subFieldOneTest EQUAL target.fieldSix.subFieldOneTest");
+} else {
+    console.log("origin.fieldSix.subFieldOneTest NOT_EQUAL target.fieldSix.subFieldOneTest");
+}
+
+if (origin.fieldSix === target.fieldSix) {
+    console.log("origin.fieldSix EQUAL target.fieldSix");
+} else {
+    console.log("origin.fieldSix NOT_EQUAL target.fieldSix");
+}
+
 // deep copy section end
 
-function makeSum() { 
+function makeSum() {
     let sum = 0;
 
     return function (number) {
