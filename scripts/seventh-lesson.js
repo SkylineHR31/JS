@@ -3,16 +3,16 @@
 const origin = {
     fieldOne: "someValueOne",
     fieldTwo: "someValuetwo",
-    fieldThree: 
-        {
-            subFieldOne: "subSomeValueOne",
-            subFieldTwo: "subSomeValueTwo"
-        },
-        fieldTest: 
-        {
-            subFieldOneTest: "subSomeValueOne",
-            subFieldTwoTest: "subSomeValueTwo"
-        },
+    fieldThree:
+    {
+        subFieldOne: "subSomeValueOne",
+        subFieldTwo: "subSomeValueTwo"
+    },
+    fieldTest:
+    {
+        subFieldOneTest: "subSomeValueOne",
+        subFieldTwoTest: "subSomeValueTwo"
+    },
     fieldFour: "someValueFour"
 };
 
@@ -25,21 +25,21 @@ const target = {};
 
 function isObject(obj) {
     return obj !== null && (typeof obj === "object");
-  }
-  
-  function copy(target, origin) {
+}
+
+function copy(target, origin) {
     for (const key in origin) {
-      if (isObject(origin[key])) {
-        target[key] = copy({}, origin[key]);
-      } else {
-        target[key] = origin[key];
-      }
+        if (isObject(origin[key])) {
+            target[key] = copy({}, origin[key]);
+        } else {
+            target[key] = origin[key];
+        }
     }
 
     return target;
 }
 
-copy(target,origin);
+copy(target, origin);
 
 if (origin === target) {
     console.log("origin EQUAL target");
@@ -72,16 +72,16 @@ function isEqual(a, b) {
             if (a[key] !== b[key]) return false;
             if (isObject(a[key])) {
                 if (!isEqual(a[key], b[key])) return false;
-                
+
             }
         }
     } else if (a !== b) return false;
     return true;
 }
 
-console.log(isEqual(origin,origin));
-console.log(isEqual(origin,someObject));
-console.log(isEqual(someVariable,someVariable));
-console.log(isEqual(someVariable,someVariableVrong));
+console.log(isEqual(origin, origin));
+console.log(isEqual(origin, someObject));
+console.log(isEqual(someVariable, someVariable));
+console.log(isEqual(someVariable, someVariableVrong));
 
 // Equal objects parth end
