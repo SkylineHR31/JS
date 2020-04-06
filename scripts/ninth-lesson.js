@@ -45,7 +45,9 @@ function copy(target, origin) {
             }
             target[key] = bufferArray;
         } else if (isObject(origin[key])) {
-            target[key] = copy({}, origin[key]);
+            for (const iterator in origin[key]) {
+                target[iterator] = copy({}, origin[key]);
+            }
         } else {
             target[key] = origin[key];
         }
