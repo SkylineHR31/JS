@@ -6,13 +6,11 @@ function Unit(type, health, maxHealth, maxDistance) {
 }
 
 Unit.prototype.isReadyToMove = function(distance) {
-    if (distance < this.maxDistance) return false; 
-    return true;
+    return distance >= this.maxDistance;
 };
 
 Unit.prototype.isReadyToFight = function() {
-    if (this.health < this.maxHealth/2) return false;
-    return true; 
+    return this.health >= this.maxHealth/2; 
 };
 
 Unit.prototype.restore = function() {
@@ -22,7 +20,7 @@ Unit.prototype.restore = function() {
 };
 
 Unit.prototype.clone = function() {
-    return Object.assign(this);
+    return Object.assign({}, this);
 };
 
 function Army(defaultUnits) {
@@ -31,42 +29,41 @@ function Army(defaultUnits) {
 }
 
 Army.prototype.isReadyToMove = function(distance) {
-    for (const iterator of this.units) {
-        if (distance < this.units[iterator].maxDistance) return false; 
+    for (const unit of this.units) { 
+        if (!unit.isReadyToMove(distance)) return false;
     }
     return true;
 };
 
 Army.prototype.isReadyToFight = function() {
-    for (const iterator of this.units) {
-        if (this.units[iterator].health < this.units[iterator].maxHealth/2) return false; 
+    for (const unit of this.units) {
+        if (!unit.isReadyToFight()) return false;
     }
     return true;
 };
 
 Army.prototype.restore = function() {
-    for (const iterator of this.units) {
-        if (this.units[iterator].health < this.units[iterator].maxHealth) {
-            this.units[iterator].health = this.units[iterator].maxHealth;        
-        }
+    for (const unit of this.units) {
+        unit.restore();
     }
 };
 
 Army.prototype.getReadyToMoveUnits = function (distance) {
     let movableUnits = [];
-    for (const iterator of this.units) {
-        if (distance < this.units[iterator].maxDistance) continue;
-        movableUnits.push(this.units[iterator]);        
+    for (const unit of this.units) {
+        if(unit.isReadyToMove) {
+            movableUnits.push(unit);
+        }       
     }
     return movableUnits;
 };
 
 Army.prototype.combineUnits = function(unitsArray) {
-    for (const iterator of unitsArray) {
-        this.units.push(unitsArray[iterator]);        
+    for (const unit of unitsArray) {
+        this.units.push(unit);        
     }
 };
 
 Army.prototype.cloneUnit = function(unitId) {
-    return Object.assign(this.units[unitId]);
+    return Object.assign({} ,this.units[unitId]);
 };
