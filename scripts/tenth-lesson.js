@@ -29,15 +29,11 @@ function Army(defaultUnits) {
 }
 
 Army.prototype.isReadyToMove = function(distance) {
-    let booleanBuffer = true;
-    booleanBuffer = unit.every(isReadyToMove(distance));
-    return booleanBuffer;
+    return this.units.every(unit => unit.isReadyToMove(distance));
 };
 
 Army.prototype.isReadyToFight = function() {
-    let booleanBuffer = true;
-    booleanBuffer = unit.every(isReadyToFight());
-    return booleanBuffer;
+    return this.units.every(unit => unit.isReadyToFight());
 };
 
 Army.prototype.restore = function() {
@@ -49,7 +45,7 @@ Army.prototype.restore = function() {
 Army.prototype.getReadyToMoveUnits = function (distance) {
     let movableUnits = [];
     for (const unit of this.units) {
-        if(unit.isReadyToMove) {
+        if(unit.isReadyToMove(distance)) {
             movableUnits.push(unit);
         }       
     }
@@ -65,3 +61,4 @@ Army.prototype.combineUnits = function(unitsArray) {
 Army.prototype.cloneUnit = function(unitId) {
     return Object.assign({} ,this.units[unitId]);
 };
+
