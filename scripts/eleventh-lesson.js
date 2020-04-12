@@ -1,4 +1,4 @@
-function Animal(gender) {
+function Animal(gender = "male") {
     this.gender = gender;
 }
 
@@ -11,7 +11,7 @@ Animal.prototype.jump = function() {
 }
 
 function Mammal(gender) {
-    this.gender = gender;
+    Animal.call(this, gender);
 }
 
 Mammal.prototype = Object.create(Animal.prototype);
@@ -30,7 +30,7 @@ Mammal.prototype.isGiveMilk = function() {
 }
 
 function Raccoon(gender) {
-    this.gender = gender;
+    Animal.call(this, gender);
 }
 
 Raccoon.prototype = Object.create(Mammal.prototype);
