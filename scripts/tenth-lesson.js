@@ -29,17 +29,15 @@ function Army(defaultUnits) {
 }
 
 Army.prototype.isReadyToMove = function(distance) {
-    for (const unit of this.units) { 
-        if (!unit.isReadyToMove(distance)) return false;
-    }
-    return true;
+    let booleanBuffer = true;
+    booleanBuffer = unit.every(isReadyToMove(distance));
+    return booleanBuffer;
 };
 
 Army.prototype.isReadyToFight = function() {
-    for (const unit of this.units) {
-        if (!unit.isReadyToFight()) return false;
-    }
-    return true;
+    let booleanBuffer = true;
+    booleanBuffer = unit.every(isReadyToFight());
+    return booleanBuffer;
 };
 
 Army.prototype.restore = function() {
