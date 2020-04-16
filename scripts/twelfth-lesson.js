@@ -1,22 +1,21 @@
-function dataPrint() {
+function datePrint() {
     const date = new Date();
     let hoursbuffer = String(date.getHours());
     let minutesbuffer = String(date.getMinutes());
     let secondsbuffer = String(date.getSeconds());
 
-    function formateData(buffer, outputString) {
+    function formateDate(buffer, outputString) {
         if (buffer.length < 2) {
             outputString = "0" + buffer;
-        }
-        
-        return buffer; 
+            return outputString;
+        } else return buffer; 
     }
     
-    console.log(`${formateData(hoursbuffer, "")}:${formateData(minutesbuffer, "")}:${formateData(secondsbuffer, "")}`);
+    console.log(`${formateDate(hoursbuffer, "")}:${formateDate(minutesbuffer, "")}:${formateDate(secondsbuffer, "")}`);
     
 }
 
 let timerId = setInterval(() => {
     console.clear();
-    dataPrint();
+    datePrint();
 }, 1000);
