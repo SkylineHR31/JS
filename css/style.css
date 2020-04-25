@@ -11,6 +11,20 @@ body {
   overflow: hidden;
 }
 
+.container-wrapper.dom-editable {
+  min-height: 100vh;
+  height: auto;
+  background-repeat: repeat;
+  overflow: auto;
+}
+
+.container-wrapper.dom-editable .container {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+}
+
 .container {
   width: 1200px;
   margin: 0 auto;
@@ -61,5 +75,83 @@ body {
 
 .table td {
   border: 1px solid white;
+}
+
+.square,
+.change-color {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: lightblue;
+  color: lightgoldenrodyellow;
+  margin: 50px;
+}
+
+.square .counter,
+.change-color .counter {
+  font-weight: bold;
+  font-size: 38px;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  color: lightgoldenrodyellow;
+  outline: none;
+  text-align: center;
+}
+
+.square .square-buttons-wrapper,
+.change-color .square-buttons-wrapper {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 30px;
+}
+
+.square .square-buttons-wrapper .btn,
+.change-color .square-buttons-wrapper .btn {
+  display: inline-block;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  height: 100%;
+  width: 50px;
+  margin: 0 -4px;
+  cursor: pointer;
+  font-size: 24px;
+  color: lightgoldenrodyellow;
+}
+
+.square.default-color,
+.change-color.default-color {
+  background-color: lightblue;
+}
+
+.square.lightsalmon-color,
+.change-color.lightsalmon-color {
+  background-color: lightsalmon;
+}
+
+.square.lightgreen-color,
+.change-color.lightgreen-color {
+  background-color: lightgreen;
+}
+
+.square.lightgoldenrodyellow-color,
+.change-color.lightgoldenrodyellow-color {
+  background-color: lightgoldenrodyellow;
+}
+
+.change-color {
+  cursor: pointer;
 }
 /*# sourceMappingURL=style.css.map */
