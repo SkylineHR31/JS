@@ -48,7 +48,7 @@ body {
     }
 }
 
-.js-generated-list {
+.list {
     position: absolute;
     width: 300px;
     color: lightblue;
@@ -60,6 +60,16 @@ body {
     top: 0;
     bottom: 0;
     right: 0;
+    
+    .list-item {
+        cursor: pointer;
+        margin: 20px 0;
+        padding-left: 20px;
+
+        &.red-bcg {
+            background-color: rgb(252, 70, 70);
+        }
+    }
 }
 
 .table {
