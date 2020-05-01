@@ -10,6 +10,17 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+
+    &.dom-editable {
+        min-height: 100vh;
+        height: auto;
+        background-repeat: repeat;
+        overflow: auto;
+
+        .container {
+            flex-flow: column;
+        }
+    }
 }
 
 .container {
@@ -37,7 +48,7 @@ body {
     }
 }
 
-.js-generated-list {
+.list {
     position: absolute;
     width: 300px;
     color: lightblue;
@@ -49,6 +60,16 @@ body {
     top: 0;
     bottom: 0;
     right: 0;
+    
+    .list-item {
+        cursor: pointer;
+        margin: 20px 0;
+        padding-left: 20px;
+
+        &.red-bcg {
+            background-color: rgb(252, 70, 70);
+        }
+    }
 }
 
 .table {
@@ -58,4 +79,69 @@ body {
     td {
         border: 1px solid white;
     }
+}
+
+.square,
+.change-color {
+    display: inline-flex;
+    position: relative;
+    width: 100px;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    background-color: lightblue;
+    color: lightgoldenrodyellow;
+    margin: 50px;
+
+    .counter {
+        font-weight: bold;
+        font-size: 38px;
+        width: 100%;
+        background-color: transparent;
+        border: none;
+        color: lightgoldenrodyellow;
+        outline: none;
+        text-align: center;
+    }
+
+    .square-buttons-wrapper {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        height: 30px;
+
+        .btn {
+            display: inline-block;
+            border: none;
+            background-color: transparent;
+            outline: none;
+            height: 100%;
+            width: 50px;
+            margin: 0 -4px;
+            cursor: pointer;
+            font-size: 24px;
+            color: lightgoldenrodyellow;
+        }
+    }
+
+    &.default-color {
+        background-color: lightblue;
+    }
+
+    &.lightsalmon-color {
+        background-color: lightsalmon;
+    }
+
+    &.lightgreen-color {
+        background-color: lightgreen;
+    }
+
+    &.lightgoldenrodyellow-color {
+        background-color: lightgoldenrodyellow;
+    }
+}
+
+.change-color {
+    cursor: pointer;
 }
