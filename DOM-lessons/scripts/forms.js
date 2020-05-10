@@ -53,14 +53,13 @@ Form.prototype.validation = function() {
             let userData = {};
 
             if (this.regExp()) {
-                if (this.regExp() && emailInput.classList.contains("invalid") && passInput.classList.contains("invalid")) {
-                    emailInput.classList.remove("invalid");
-                    passInput.classList.remove("invalid");
-                }
                 userData.email = emailInput.value;
                 userData.password = passInput.value;
 
                 console.log(JSON.stringify(userData, null, '\t'));
+
+                emailInput.value = null;
+                passInput.value = null;
             } else {
                 emailInput.classList.add("invalid");
                 passInput.classList.add("invalid");
