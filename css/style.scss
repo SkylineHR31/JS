@@ -145,3 +145,28 @@ body {
 .change-color {
     cursor: pointer;
 }
+
+.submit-form {
+    margin: 0 auto;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    height: 700px;
+
+    [type="text"] {
+        margin-bottom: 10px;
+        border: 2px solid #4e4e4e;
+        &.invalid {
+            border: 2px solid #ffdddd;
+        }
+    }
+
+    [type="password"] {
+        margin-bottom: 10px;
+        border: 2px solid #4e4e4e;
+        &.invalid {
+            border: 2px solid #ffdddd;
+        }
+    }
+}
