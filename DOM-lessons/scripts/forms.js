@@ -1,68 +1,59 @@
 function Form(insertPlace, classFormName) {
     this.insertPlace = insertPlace;
     this.classFormName = classFormName;
-    regExpEmail = /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/;
-    regExpPassword = /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
+    this.regExpEmail = /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/;
+    this.regExpPassword = /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
 }
 
 Form.prototype.render = function() {
     const formContainer = document.querySelector(this.insertPlace);
-    const form = document.createElement('form');
+    this.form = document.createElement('form');
 
-    const submitButton = document.createElement('input');
+    const submitButton = document.createElement('button');
     submitButton.type = "submit";
-    submitButton.value = "Let's rock this form";
+    submitButton.innerHTML = "Let's rock this form";
 
-    const emailInput = document.createElement('input');
-    emailInput.type = "text";
-    emailInput.placeholder = "Your email";
+    this.emailInput = document.createElement('input');
+    this.emailInput.type = "text";
+    this.emailInput.placeholder = "Your email";
 
-    const passInput = document.createElement('input');
-    passInput.type = "password";
-    passInput.placeholder = "Your password";
+    this.passInput = document.createElement('input');
+    this.passInput.type = "password";
+    this.passInput.placeholder = "Your password";
 
-    form.append(emailInput);
-    form.append(passInput);
-    form.append(submitButton);
+    this.form.append(this.emailInput);
+    this.form.append(this.passInput);
+    this.form.append(submitButton);
 
 
-    form.className = this.classFormName;
-    formContainer.append(form);
+    this.form.className = this.classFormName;
+    formContainer.append(this.form);
 
-    console.dir(emailInput);
-
-    this.validation();
-
-    return formContainer;
+    this.submitEvent();
 }
 
-Form.prototype.regExp = function() {
-    const emailInput = document.querySelector('[type="text"]');
-    const passInput = document.querySelector('[type="password"]');
-    return regExpEmail.test(emailInput.value) && regExpPassword.test(passInput.value);
+Form.prototype.validate = function() {
+    return this.regExpEmail.test(this.emailInput.value) && this.regExpPassword.test(this.passInput.value);
 }
 
-Form.prototype.validation = function() {
-    const emailInput = document.querySelector('[type="text"]');
-    const passInput = document.querySelector('[type="password"]');
-
-    document.querySelector("." + this.classFormName).addEventListener(
+Form.prototype.submitEvent = function() {
+    this.form.addEventListener(
         'submit', (event) => {
             event.preventDefault();
 
             let userData = {};
 
-            if (this.regExp()) {
-                userData.email = emailInput.value;
-                userData.password = passInput.value;
+            if (this.validate()) {
+                userData.email = this.emailInput.value;
+                userData.password = this.passInput.value;
 
                 console.log(JSON.stringify(userData, null, '\t'));
 
-                emailInput.value = null;
-                passInput.value = null;
+                this.emailInput.value = null;
+                this.passInput.value = null;
             } else {
-                emailInput.classList.add("invalid");
-                passInput.classList.add("invalid");
+                this.emailInput.classList.add("invalid");
+                this.passInput.classList.add("invalid");
             }
         }  
     );
