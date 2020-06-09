@@ -1,11 +1,12 @@
 const button = document.querySelector("button");
-let xhrResponse;
+let xhrResponse = undefined;
 
 function getData(url, onSuccess, onError, onStart, onEnd) {
     const xhr = new XMLHttpRequest();
 
     if (xhrResponse) {
         xhr.open("GET", xhrResponse.info.next);
+        if (xhrResponse.info.next === null) return "Pages end";
     } else {
         xhr.open("GET", url);
     }
