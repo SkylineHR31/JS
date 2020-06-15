@@ -81,3 +81,16 @@ button.addEventListener("click", (event) => {
 
     getData("https://rickandmortyapi.com/api/character", onSuccess, onError, onStart, onEnd);
 });
+
+function createSelect(selectOptions) {
+    let select = document.createElement('select');
+
+    for (let i = 0; i < selectOptions; i++) {
+        let option = new Option((i + 1) + " page", i);
+        select.add(option, select[i]);
+    }
+
+    document.body.prepend(select);
+}
+
+createSelect(30);
